@@ -32,7 +32,8 @@ export default StyleSheet.create({
     incidentValue:{
         marginTop: 8,
         fontSize: 15,
-        color: "#737380"
+        color: "#737380",
+        justifyContent: "flex-start"
     },
 
     contactBox:{
@@ -75,6 +76,11 @@ export default StyleSheet.create({
         color: '#fff',
         fontSize: 15,
         fontWeight: 'bold'
+    },
+
+    moreDetails:{
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 
 })

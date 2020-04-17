@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Feather} from '@expo/vector-icons';
-import {View, Text, Image, TouchableOpacity, Linking} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Linking, ScrollView} from 'react-native';
 import logo from "./../../../assets/logo.png";
 import {useNavigation, useRoute} from '@react-navigation/native';
 import * as MailComposer from "expo-mail-composer";
@@ -9,7 +9,7 @@ import api from "./../../services/api";
 import styles from "./styles";
 
 
-export default function Incidents(){
+export default function Detail(){
 
     const route = useRoute();
 
@@ -31,7 +31,7 @@ export default function Incidents(){
     }
 
     function sendWhatsapp(){
-        Linking.openURL(`whatsapp://send?phone=${incidents.wpp}&text=${message}`)
+        Linking.openURL(`whatsapp://send?phone=+55${incidents.wpp}&text=${message}`)
     }
     
     return(
@@ -42,13 +42,30 @@ export default function Incidents(){
                 </TouchableOpacity>
                 <Image source={logo} />
             </View>
-
+          <ScrollView showsVerticalScrollIndicator={false}>   
             <View style={styles.incident}>
-                <Text style={[styles.incidentProperty, {marginTop: 0}]}>ONG:</Text>
-                <Text style={styles.incidentValue}>{incidents.name}</Text>
+                <View style={styles.moreDetails}>
+                    <View>
+                        <Text style={[styles.incidentProperty, {marginTop: 0}]}>ONG:</Text>
+                        <Text style={styles.incidentValue}>{incidents.name}</Text>
+                    </View>
+                    
+                    <View>        
+                        <Text style={[styles.incidentProperty, {marginTop: 0}]}>Cidade:</Text>
+                        <Text style={styles.incidentValue}>{incidents.city}</Text>
+                    </View>
+                    
+                    <View>        
+                        <Text style={[styles.incidentProperty, {marginTop: 0}]}>UF:</Text>
+                        <Text style={styles.incidentValue}>{incidents.uf}</Text>
+                    </View>    
+                </View>
 
                 <Text style={styles.incidentProperty}>Caso:</Text>
                 <Text style={styles.incidentValue}>{incidents.title}</Text>
+
+                <Text style={styles.incidentProperty}>Descrição:</Text>
+                <Text style={styles.incidentValue}>{incidents.description}</Text>
 
                 <Text style={styles.incidentProperty}>Valor:</Text>
                 <Text style={styles.incidentValue}>{Intl.NumberFormat('pt-BR',
@@ -72,6 +89,7 @@ export default function Incidents(){
                     </TouchableOpacity>
                 </View>
             </View>
+         </ScrollView>      
         </View>
     );
 }

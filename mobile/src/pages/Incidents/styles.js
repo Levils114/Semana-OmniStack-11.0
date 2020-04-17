@@ -26,7 +26,7 @@ export default StyleSheet.create({
     title:{
         fontSize: 30,
         marginBottom: 16,
-        marginTop: 48,
+        marginTop: 26,
         color: '#13131a',
         fontWeight: 'bold' 
     },
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     },
 
     incidentList:{
-        marginTop: 32
+        marginTop: 22
     },
 
     incident:{

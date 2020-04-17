@@ -16,11 +16,8 @@ export default function Profile(){
     const history = useHistory();
 
     useEffect(() => {
-        api.get('profile',{
-            headers: {
-                Authorization: ongId,
-            }
-        }).then(response => {
+        api.get('profile',{ headers: { Authorization: ongId }})
+            .then(response => {
             setIncidents(response.data);
         })    
     }, [ongId]);
@@ -49,31 +46,31 @@ export default function Profile(){
         <div className="profile-container">
             <header>
                 <img src={logoImg} alt="Be The Hero"/>
-                    <span>Bem Vinda {ongName}</span>
+                    <span>Bem Vindo(a), {ongName}</span>
 
                 <Link to="/incidents/new" className="button">Cadastrar novo caso</Link>
 
                 <button type="button" onClick={handleLogout}>
-                    <img src={icon} alt="power"/>
+                    <img src={icon} alt="power" id="power"/>
                 </button>
             </header>
 
             <h1>Casos Cadastrados</h1>
 
             <ul>
-                {incidents.map(incidets => {
+                {incidents.map(incident => {
                     return (
-                    <li key={incidets.id}>
+                    <li key={incident.id}>
                         <strong>Caso:</strong>
-                        <p>{incidets.title}</p>
+                        <p>{incident.title}</p>
 
                         <strong>Descrição:</strong>
-                        <p>{incidets.description}</p>
+                        <p>{incident.description}</p>
 
                         <strong>Valor:</strong>
-                        <p>{Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'}).format(incidents.value)}</p>
+                        <p>{Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(incident.value)}</p>
 
-                        <button type="button" onClick={() => handleDeleteIncident(incidets.id)}>
+                        <button type="button" onClick={() => handleDeleteIncident(incident.id)}>
                             <img src={icon2} alt="Delete" />
                         </button>
                     </li>

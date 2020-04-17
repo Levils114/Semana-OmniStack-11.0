@@ -58,11 +58,10 @@ export default function Incidents(){
             <FlatList
             style={styles.incidentList}
             keyExtractor={incidents => String(incidents.id)}
-            showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
             onEndReached={loadIncidents}
             onEndReachedThreshold={0.2}
-            data={[incidents]}
+            data={incidents}
             renderItem={({item:incidents}) => (
                 <View style={styles.incidentList}>
                 <View style={styles.incident}>
